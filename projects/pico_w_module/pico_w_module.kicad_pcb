@@ -5216,7 +5216,7 @@
 			)
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Package_DFN_QFN.3dshapes/QFN-24_3x3mm_P0.4mm_EP1.7x1.54mm.step"
+		(model "${KICAD10_3DMODEL_DIR}/Package_DFN_QFN.3dshapes/QFN-24_3x3mm_P0.4mm.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -5224,7 +5224,7 @@
 				(xyz 1 1 1)
 			)
 			(rotate
-				(xyz 0 0 0)
+				(xyz -0 -0 -0)
 			)
 		)
 	)
@@ -6657,6 +6657,17 @@
 			(uuid "49c3c996-8cc4-4afc-8525-a3e9dad12a29")
 		)
 		(embedded_fonts no)
+		(model "${DOWNLOADED_MIC}/INMP441.step"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz -90 -0 -0)
+			)
+		)
 	)
 	(footprint "Capacitor_SMD:C_1206_3216Metric_Pad1.33x1.80mm_HandSolder"
 		(layer "F.Cu")
@@ -6826,6 +6837,45 @@
 		(fill no)
 		(layer "Edge.Cuts")
 		(uuid "adf860f7-62dc-415b-9e66-850f5d747997")
+	)
+	(gr_text "INMP441 MICROPHONE"
+		(at 84 114.5 180)
+		(layer "F.SilkS")
+		(uuid "e787280a-c872-48bc-80ea-7f9b47621948")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.25)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "ICM 20948- IMU"
+		(at 89 85.5 180)
+		(layer "F.SilkS")
+		(uuid "ea938c0a-f7e1-4756-8da7-ec7cb0db3886")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.25)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "Raspberry pi pico w"
+		(at 124 98 180)
+		(layer "F.SilkS")
+		(uuid "daa3bd30-c06e-49d2-8b82-b46e33482f18")
+		(effects
+			(font
+				(size 1.5 1.5)
+				(thickness 0.3)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
 	)
 	(segment
 		(start 61.97 82.396255)
