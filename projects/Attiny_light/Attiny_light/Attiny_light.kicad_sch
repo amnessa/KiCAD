@@ -3778,7 +3778,7 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
@@ -3857,7 +3857,7 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
@@ -3931,7 +3931,7 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
@@ -4722,7 +4722,7 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
@@ -4956,7 +4956,7 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
@@ -4979,7 +4979,7 @@
 					(size 1.27 1.27)
 				) (justify left))
 		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_2.0x2.0mm"
+		(property "Footprint" "TestPoint:TestPoint_Pad_1.5x1.5mm"
 			(at 144.78 167.64 0)
 			(hide yes)
 			(show_name no)
@@ -5030,7 +5030,7 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
@@ -5053,7 +5053,7 @@
 					(size 1.27 1.27)
 				) (justify left))
 		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_2.0x2.0mm"
+		(property "Footprint" "TestPoint:TestPoint_Pad_1.5x1.5mm"
 			(at 160.02 167.64 0)
 			(hide yes)
 			(show_name no)
@@ -5899,7 +5899,7 @@
 				)
 			)
 		)
-		(property "Value" "0R"
+		(property "Value" "33"
 			(at 232.41 113.03 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5909,7 +5909,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Resistor_SMD:R_1206_3216Metric"
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 226.822 111.76 90)
 			(hide yes)
 			(show_name no)
@@ -5963,7 +5963,7 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
@@ -5986,7 +5986,7 @@
 					(size 1.27 1.27)
 				) (justify left))
 		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_2.0x2.0mm"
+		(property "Footprint" "TestPoint:TestPoint_Pad_1.5x1.5mm"
 			(at 248.92 111.76 0)
 			(hide yes)
 			(show_name no)
@@ -6037,7 +6037,7 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
@@ -6060,7 +6060,7 @@
 					(size 1.27 1.27)
 				) (justify left))
 		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_2.0x2.0mm"
+		(property "Footprint" "TestPoint:TestPoint_Pad_1.5x1.5mm"
 			(at 226.05999999999997 116.84 0)
 			(hide yes)
 			(show_name no)
@@ -6111,7 +6111,7 @@
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
-		(in_bom yes)
+		(in_bom no)
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
@@ -6134,7 +6134,7 @@
 					(size 1.27 1.27)
 				) (justify left))
 		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_2.0x2.0mm"
+		(property "Footprint" "TestPoint:TestPoint_Pad_1.5x1.5mm"
 			(at 274.32 116.84 0)
 			(hide yes)
 			(show_name no)
@@ -6865,7 +6865,7 @@
 		)
 		(uuid "def39f68-4b1e-472e-a085-52cbc4e83c09")
 	)
-	(text "LED DRIVERS, common anode (top)\nR13 0R = direct drive like the original; pick a value after\nmeasuring LED Vf (step 0). Shared: only one LED is on at a time.\n100k holds each gate low while the MCU resets or is flashed."
+	(text "LED DRIVERS, common anode (top)\nR13 33R, shared (only one LED is on at a time). LEDs measured\n25-35 mA @ ~3.0 V -> ~33 mA at 4.2 V, ~20 mA at 3.7 V, ~12 mA at 3.4 V.\n100k holds each gate low while the MCU resets or is flashed."
 		(exclude_from_sim no)
 		(at 172.72 93.98 0)
 		(effects
