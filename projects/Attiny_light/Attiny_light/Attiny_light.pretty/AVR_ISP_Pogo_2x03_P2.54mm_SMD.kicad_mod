@@ -1,0 +1,76 @@
+(footprint "AVR_ISP_Pogo_2x03_P2.54mm_SMD"
+  (version 20241229)
+  (generator "kicad-mcp")
+  (generator_version "9.0")
+  (layer "F.Cu")
+  (descr "AVR 6-pin ISP as bare SMD pads for a pogo-pin jig, 2.54 mm grid, Conn_02x03_Odd_Even numbering (1 MISO, 2 VCC, 3 SCK, 4 MOSI, 5 RST, 6 GND)")
+  (tags "AVR ISP pogo test pad 2x03")
+
+  (property "Reference" "REF**" (at 0 -4.3 0)
+    (layer "F.SilkS")
+    (uuid "48959901-b130-4874-904f-61fd1c32644a")
+    (effects (font (size 1 1) (thickness 0.15)))
+  )
+  (property "Value" "AVR_ISP_Pogo_2x03_P2.54mm_SMD" (at 0 4.3 0)
+    (layer "F.Fab")
+    (uuid "609f2ae1-b6fb-4869-aefa-2b0ca464bad1")
+    (effects (font (size 1 1) (thickness 0.15)))
+  )
+  (property "Datasheet" "" (at 0 0 0)
+    (layer "F.Fab")
+    (uuid "fc705ae9-c66a-4ca6-b7fa-a37562e612b8")
+    (effects (font (size 1 1) (thickness 0.15)))
+  )
+
+  (fp_rect
+    (start -2.27 -3.54)
+    (end 2.27 3.54)
+    (stroke (width 0.05) (type default))
+    (fill none)
+    (layer "F.CrtYd")
+    (uuid "b276781a-a7ca-44c6-9ccb-4e114758c308")
+  )
+
+  (pad "1" smd rect
+    (at -1.27 -2.54)
+    (size 1.5 1.5)
+    (layers "F.Cu" "F.Paste" "F.Mask")
+    (uuid "b7f8583f-ea02-4ac9-afe6-f3ecc89bda01")
+  )
+
+  (pad "2" smd circle
+    (at 1.27 -2.54)
+    (size 1.5 1.5)
+    (layers "F.Cu" "F.Paste" "F.Mask")
+    (uuid "429cefd6-3cb5-4861-8d21-a8a37e8f143d")
+  )
+
+  (pad "3" smd circle
+    (at -1.27 0)
+    (size 1.5 1.5)
+    (layers "F.Cu" "F.Paste" "F.Mask")
+    (uuid "2227b16a-045a-47a4-929c-5e9a82cf5ac4")
+  )
+
+  (pad "4" smd circle
+    (at 1.27 0)
+    (size 1.5 1.5)
+    (layers "F.Cu" "F.Paste" "F.Mask")
+    (uuid "81220a77-456d-4784-a258-bd4e0c74f110")
+  )
+
+  (pad "5" smd circle
+    (at -1.27 2.54)
+    (size 1.5 1.5)
+    (layers "F.Cu" "F.Paste" "F.Mask")
+    (uuid "b1cfc384-6d5c-4eb0-ad10-955bcd35f240")
+  )
+
+  (pad "6" smd circle
+    (at 1.27 2.54)
+    (size 1.5 1.5)
+    (layers "F.Cu" "F.Paste" "F.Mask")
+    (uuid "a7707973-1c59-4170-869b-48fbe22a3181")
+  )
+
+)

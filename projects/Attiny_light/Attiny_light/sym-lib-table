@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "Attiny_light")(type "KiCad")(uri "${KIPRJMOD}/Attiny_light.kicad_sym")(options "")(descr "Project symbols (TP4054, FS8205A)"))
+)

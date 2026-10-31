@@ -1,0 +1,225 @@
+(kicad_symbol_lib
+  (version 20241209)
+  (generator "kicad-mcp")
+  (generator_version "9.0")
+  (symbol "TP4054"
+    (exclude_from_sim no)
+    (in_bom yes)
+    (on_board yes)
+    (property "Reference" "U"
+      (at 2.54 0 0)
+      (effects
+        (font (size 1.27 1.27))
+      )
+    )
+    (property "Value" "TP4054"
+      (at 0 -2.54 0)
+      (effects
+        (font (size 1.27 1.27))
+      )
+    )
+    (property "Footprint" "Package_TO_SOT_SMD:SOT-23-5"
+      (at 0 -5.08 0)
+      (effects
+        (font (size 1.27 1.27))
+      )
+      (hide yes)
+    )
+    (property "Datasheet" "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/6128/TP4054-5272.pdf"
+      (at 0 -7.62 0)
+      (effects
+        (font (size 1.27 1.27))
+      )
+      (hide yes)
+    )
+    (property "Description" "500mA linear Li-ion charger, 4.2V, CHRG open-drain status, SOT-23-5. Ibat = 1000V / Rprog"
+      (at 0 -10.16 0)
+      (effects
+        (font (size 1.27 1.27))
+      )
+      (hide yes)
+    )
+    (property "ki_keywords" "li-ion lipo charger linear TP4054 LTC4054"
+      (at 0 0 0)
+      (effects
+        (font (size 1.27 1.27))
+      )
+      (hide yes)
+    )
+    (symbol "TP4054_0_1"
+      (rectangle
+        (start -7.62 5.08)
+        (end 7.62 -5.08)
+        (stroke (width 0.254) (type default))
+        (fill (type background))
+      )
+    )
+    (symbol "TP4054_1_1"
+      (pin power_in line
+        (at -10.16 2.54 0)
+        (length 2.54)
+        (name "VCC"
+          (effects (font (size 1.27 1.27)))
+        )
+        (number "4"
+          (effects (font (size 1.27 1.27)))
+        )
+      )
+      (pin passive line
+        (at -10.16 -2.54 0)
+        (length 2.54)
+        (name "PROG"
+          (effects (font (size 1.27 1.27)))
+        )
+        (number "5"
+          (effects (font (size 1.27 1.27)))
+        )
+      )
+      (pin power_out line
+        (at 10.16 2.54 180)
+        (length 2.54)
+        (name "BAT"
+          (effects (font (size 1.27 1.27)))
+        )
+        (number "3"
+          (effects (font (size 1.27 1.27)))
+        )
+      )
+      (pin open_collector line
+        (at 10.16 -2.54 180)
+        (length 2.54)
+        (name "~{CHRG}"
+          (effects (font (size 1.27 1.27)))
+        )
+        (number "1"
+          (effects (font (size 1.27 1.27)))
+        )
+      )
+      (pin power_in line
+        (at 0 -7.62 90)
+        (length 2.54)
+        (name "GND"
+          (effects (font (size 1.27 1.27)))
+        )
+        (number "2"
+          (effects (font (size 1.27 1.27)))
+        )
+      )
+    )
+  )
+  (symbol "FS8205A"
+    (exclude_from_sim no)
+    (in_bom yes)
+    (on_board yes)
+    (property "Reference" "Q"
+      (at 2.54 0 0)
+      (effects
+        (font (size 1.27 1.27))
+      )
+    )
+    (property "Value" "FS8205A"
+      (at 0 -2.54 0)
+      (effects
+        (font (size 1.27 1.27))
+      )
+    )
+    (property "Footprint" "Package_TO_SOT_SMD:SOT-23-6"
+      (at 0 -5.08 0)
+      (effects
+        (font (size 1.27 1.27))
+      )
+      (hide yes)
+    )
+    (property "Datasheet" "https://mm.digikey.com/Volume0/opasdata/d220001/medias/docus/9053/FS8205A-new.pdf"
+      (at 0 -7.62 0)
+      (effects
+        (font (size 1.27 1.27))
+      )
+      (hide yes)
+    )
+    (property "Description" "Dual N-channel MOSFET, common drain, 20V 6A, SOT-23-6 (EVVO FS8205A pinout: 1 S1, 2 D, 3 S2, 4 G2, 5 D, 6 G1). Pinout differs between 8205A vendors - verify."
+      (at 0 -10.16 0)
+      (effects
+        (font (size 1.27 1.27))
+      )
+      (hide yes)
+    )
+    (property "ki_keywords" "dual nmos common drain battery protection 8205"
+      (at 0 0 0)
+      (effects
+        (font (size 1.27 1.27))
+      )
+      (hide yes)
+    )
+    (symbol "FS8205A_0_1"
+      (rectangle
+        (start -7.62 5.08)
+        (end 7.62 -5.08)
+        (stroke (width 0.254) (type default))
+        (fill (type background))
+      )
+    )
+    (symbol "FS8205A_1_1"
+      (pin input line
+        (at -10.16 2.54 0)
+        (length 2.54)
+        (name "G1"
+          (effects (font (size 1.27 1.27)))
+        )
+        (number "6"
+          (effects (font (size 1.27 1.27)))
+        )
+      )
+      (pin passive line
+        (at -10.16 -2.54 0)
+        (length 2.54)
+        (name "S1"
+          (effects (font (size 1.27 1.27)))
+        )
+        (number "1"
+          (effects (font (size 1.27 1.27)))
+        )
+      )
+      (pin input line
+        (at 10.16 2.54 180)
+        (length 2.54)
+        (name "G2"
+          (effects (font (size 1.27 1.27)))
+        )
+        (number "4"
+          (effects (font (size 1.27 1.27)))
+        )
+      )
+      (pin passive line
+        (at 10.16 -2.54 180)
+        (length 2.54)
+        (name "S2"
+          (effects (font (size 1.27 1.27)))
+        )
+        (number "3"
+          (effects (font (size 1.27 1.27)))
+        )
+      )
+      (pin passive line
+        (at -2.54 7.62 270)
+        (length 2.54)
+        (name "D"
+          (effects (font (size 1.27 1.27)))
+        )
+        (number "2"
+          (effects (font (size 1.27 1.27)))
+        )
+      )
+      (pin passive line
+        (at 2.54 7.62 270)
+        (length 2.54)
+        (name "D"
+          (effects (font (size 1.27 1.27)))
+        )
+        (number "5"
+          (effects (font (size 1.27 1.27)))
+        )
+      )
+    )
+  )
+)

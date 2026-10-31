@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "kicad": {
+      "type": "stdio",
+      "command": "/usr/bin/node",
+      "args": ["/home/cago/KiCAD-MCP-Server/dist/index.js"],
+      "env": {
+        "KICAD_PYTHON": "/home/cago/KiCAD-MCP-Server/.venv/bin/python",
+        "PYTHONPATH": "/home/cago/KiCAD-MCP-Server/.venv/lib/python3.12/site-packages:/usr/lib/python3/dist-packages",
+        "LOG_LEVEL": "info"
+      }
+    }
+  }
+}
