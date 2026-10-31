@@ -28,6 +28,17 @@ Last updated 2026-10-31. Schematic: `Attiny_light.kicad_sch` (rev 2, ERC clean).
 - Brighter option: 22 Ω gives ~47 mA at 4.2 V and ~30 mA at 3.7 V. Then the firmware must cap the PWM duty when the battery is full.
 - Original modes: LED X flicker, LED X steady, LED Y steady, off. Wire either LED to L1/L2; the firmware decides which channel flickers.
 
+## PCB layout status (2026-10-31)
+
+- Ø19 mm, 2 layers, all 36 parts placed, fully routed, GND pour on both layers.
+- KiCad DRC: 0 errors, 0 unconnected, matches the schematic. 7 warnings remain: the wire pads differ from the library on purpose, because their silk boxes were removed to make room for the labels.
+- **Top:** USB-C, charger, ATtiny85, both LED MOSFETs, PB4 test pad.
+- **Bottom:** wire pads (B+, B−, SW, GND, L1, L2, L+), battery protection, ISP pogo pads (square pad = pin 1, MISO).
+- Before ordering:
+  - [ ] Print the board 1:1 (KiCad *File → Print*, 100 %) and lay the real USB-C connector on it. Its footprint was drawn from the datasheet, and KiCad has no 3D model for it.
+  - [ ] Check that the bottom pads clear the USB-C shell tabs that poke through (the two oval slots at the top edge).
+  - [ ] JP1 is open by default: bridge it only if the protection chips are left off.
+
 ## PCB order settings
 
 | Setting | Value | Why |
