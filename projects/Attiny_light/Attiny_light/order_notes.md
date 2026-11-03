@@ -1,6 +1,6 @@
 # Attiny_light rev 2 — order notes
 
-Last updated 2026-10-31. Schematic: `Attiny_light.kicad_sch` (rev 2, ERC clean).
+Last updated 2026-11-03. Schematic: `Attiny_light.kicad_sch` (rev 2, ERC clean).
 
 ## Before ordering — open questions
 
@@ -28,12 +28,12 @@ Last updated 2026-10-31. Schematic: `Attiny_light.kicad_sch` (rev 2, ERC clean).
 - Brighter option: 22 Ω gives ~47 mA at 4.2 V and ~30 mA at 3.7 V. Then the firmware must cap the PWM duty when the battery is full.
 - Original modes: LED X flicker, LED X steady, LED Y steady, off. Wire either LED to L1/L2; the firmware decides which channel flickers.
 
-## PCB layout status (2026-10-31)
+## PCB layout status (2026-11-03)
 
 - Ø19 mm, 2 layers, all 36 parts placed, fully routed, GND pour on both layers.
-- KiCad DRC: 0 errors, 0 unconnected, matches the schematic. 7 warnings remain: the wire pads differ from the library on purpose, because their silk boxes were removed to make room for the labels.
-- **Top:** USB-C, charger, ATtiny85, both LED MOSFETs, PB4 test pad.
-- **Bottom:** wire pads (B+, B−, SW, GND, L1, L2, L+), battery protection, ISP pogo pads (square pad = pin 1, MISO).
+- KiCad DRC: 0 errors, 0 unconnected, matches the schematic. 8 warnings remain: the wire pads and the PB4 test pad differ from the library on purpose, because their silk outlines were removed to make room for the labels.
+- **Top (USB-C side):** USB-C, charger, ATtiny85, both LED MOSFETs, switch wire pads **SW** and **GND** at the right edge, PB4 test pad.
+- **Bottom:** wire pads B+, B−, L1, L2, L+, battery protection, ISP pogo pads (square pad = pin 1, MISO).
 - Before ordering:
   - [ ] Print the board 1:1 (KiCad *File → Print*, 100 %) and lay the real USB-C connector on it. Its footprint was drawn from the datasheet, and KiCad has no 3D model for it.
   - [ ] Check that the bottom pads clear the USB-C shell tabs that poke through (the two oval slots at the top edge).
@@ -51,6 +51,23 @@ Last updated 2026-10-31. Schematic: `Attiny_light.kicad_sch` (rev 2, ERC clean).
 | Vias | 0.3 mm drill / 0.6 mm pad | |
 
 Very small boards: check the fab's minimum board size; some ask for a panel.
+
+## Files to send to the producer
+
+Everything is in `fab/`, generated from the final board on 2026-11-03.
+
+| File | Who needs it | What it is |
+|---|---|---|
+| **`Attiny_light_rev2_gerbers.zip`** | **upload this to the PCB maker** | Gerbers for both copper, mask, silkscreen and paste layers plus the board outline, and the Excellon drill file (17 vias and the 2 plated USB-C slots) |
+| `Attiny_light_rev2_BOM.csv` | you (shopping list) | parts grouped by value; bare pads and the jumper are left out |
+| `assembly_top.pdf`, `assembly_bottom.pdf` | you (soldering map) | part outlines, reference designators and pad numbers, 4× scale; the bottom view is mirrored as you see it |
+| `gerbers/` | – | the same files as the zip, unpacked |
+
+For bare boards, the zip is the only file the producer needs; set thickness, finish and so on in their order form (table above).
+
+- **Stencil (optional):** the paste layers are already in the zip. Order a stencil with the boards if you want to use solder paste.
+- **Slot check:** the USB-C needs two **plated slots** (0.5 × 1.1 mm). Most fabs accept 0.5 mm as the minimum plated slot width. If the online viewer shows round holes there instead of slots, ask them before paying.
+- **If you regenerate after a change:** in KiCad *Fabrication Outputs* use Gerber layers F/B.Cu, F/B.Mask, F/B.Silkscreen, F/B.Paste and Edge.Cuts. For the drill file use Excellon, mm, and "alternate" mode for oval holes.
 
 ## Bill of materials
 
@@ -79,10 +96,29 @@ Very small boards: check the fab's minimum board size; some ask for a panel.
 | C6 | 1 | 100 nF | 0402 | protection only |
 | JP1 | – | solder jumper | – | bridge only if protection is NOT fitted |
 | TP1–TP8 | – | pads | – | wires: B+, B−, PB4, SW, SW_GND, L+, L1, L2 |
+| J2 | – | pads | – | ISP pogo pads, no part |
 
 0402 parts are tiny and easy to lose: buy at least 10 of each. If you hand-solder, a stencil and paste make it much easier.
 
-For programming: a USBasp (or an Arduino as ISP) plus 6 pogo pins on a 2.54 mm grid for the bottom ISP pads.
+## Programming the ATtiny85
+
+**Not over USB-C.** The ATtiny85 has no USB hardware, and the USB-C on this board is a 6-pin power-only part: it has no data lines at all. A USB bootloader (Micronucleus, as on the Digispark) would need:
+- a 16-pin USB-C with D+/D−;
+- two Zener diodes and three resistors;
+- PB3 and PB4 given over to USB, but PB3 is already the charge input;
+- a 16.5 MHz clock, which is out of spec at battery voltage;
+- 2 KB of the 8 KB flash.
+
+That doesn't fit a Ø19 mm board, so firmware goes in through the 6 **ISP pogo pads** on the bottom.
+
+**Tools to buy:**
+- [ ] **USBasp programmer** (cheap clone is fine). It has a 10-pin plug, so get a **10-pin → 6-pin AVR ISP adapter** too if one isn't included. An Arduino Uno or Nano running the "ArduinoISP" sketch also works.
+- [ ] **Pogo-pin adapter for a 2 × 3, 2.54 mm grid**: sold as a "2.54 mm 2x3 6P pogo pin programming clip / test clamp". Or make one: 6 pogo pins (e.g. P75-E2) pushed through 2.54 mm perfboard, wired to a 6-pin female header. Hold it on the pads for the few seconds of flashing.
+- [ ] *(optional)* **ATtiny85 in DIP-8 + breadboard**, to start writing firmware before the boards arrive. Use the same wiring: LEDs on PB0/PB1, button PB2 to GND.
+- [ ] *(optional)* **SOIC-8 test clip** (the cheap "25-series flash" clip fits the 208-mil package): clips straight onto U2, if the parts next to it leave room.
+- Software: **avrdude** from the Arduino IDE, or PlatformIO in VS Code (installs in your home folder, nothing system-wide).
+
+**How to flash:** take the battery out. Set the USBasp's supply jumper to **3.3 V** (5 V also works: everything on the board is rated for it). Press the pogo adapter on with the **square pad = pin 1**, and use `-B 10`. The LEDs may flicker while flashing because MOSI/MISO also drive the LED MOSFETs; that's normal.
 
 ## Bring-up (one step at a time, test after each)
 
@@ -90,7 +126,7 @@ For programming: a USBasp (or an Arduino as ISP) plus 6 pogo pins on a 2.54 mm g
 2. **USB only, no battery:** expect 5 V at C1. TP4054 CHRG blinks (no battery present), so PB3 toggles.
 3. **Battery on a bench supply** (3.7 V, current limit 50 mA): VCC ≈ 3.7 V, idle current small.
    If the protection is fitted and nothing has power, plug in USB once: DW01 boards sometimes start in the cut-off state.
-4. **Flash fuses** (battery out, or programmer set to not power the board):
+4. **Flash fuses** (battery out, USBasp powering the board at 3.3 V; see *Programming the ATtiny85*):
    `avrdude -c usbasp -p t85 -B 10 -U lfuse:w:0x62:m -U hfuse:w:0xDD:m -U efuse:w:0xFF:m`
    (1 MHz internal clock, BOD 2.7 V, RESET kept, SPI programming kept). Use `-B 10` because a 1 MHz chip needs a slow ISP clock.
    Don't press the button while flashing (PB2 = SCK).
