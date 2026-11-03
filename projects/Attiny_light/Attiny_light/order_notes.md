@@ -4,17 +4,19 @@ Last updated 2026-11-03. Schematic: `Attiny_light.kicad_sch` (rev 2, ERC clean).
 
 ## Before ordering — open questions
 
-- [ ] **Is the cell already protected?** (protected 18650 = slightly longer, ring/board at the − end; pouch LiPo = small board under the tape at the tabs)
-  - Protected → don't buy/fit U3, Q3, R10, R11, C6; **bridge JP1** with solder.
-  - Bare cell → fit them, leave JP1 **open**.
-- [ ] **Cell chemistry**: the cell is AA-size (**14500**), measured 3.3 V when empty (2026-10-31). The label must say **3.7 V Li-ion**.
-  If it says **3.2 V / IFR / LiFePO4**, do NOT use this charger: TP4054 charges to 4.2 V and LiFePO4 maxes out at 3.6 V.
+- [x] **Battery protection**: decided 2026-11-03 to **always fit** U3, Q3, R10, R11 and C6, and leave JP1 **open**, without relying on whether the cell has its own protection. Two protections in series are harmless: about +50 mΩ and +3 µA. JP1 is only a fallback bypass.
+- [ ] **Cell chemistry** (unknown, from the cheapest rechargeable light): the cell is AA-size (**14500**), 3.3 V when found empty (2026-10-31). Cheap USB-charged lights almost always use **3.7 V Li-ion**, but check before charging it to 4.2 V:
+  1. **Label first:** "3.7 V", "Li-ion", "ICR"/"INR" means OK. "3.2 V", "IFR", "LiFePO4" means **don't use this charger** (TP4054 charges to 4.2 V; LiFePO4 maximum is 3.6 V).
+  2. **No readable label:** test the cell on its own with a bench supply set to **3.60 V, 100 mA limit**. That's safe for both chemistries. Charge until the current drops below about 15 mA, disconnect, wait 1 hour, then measure:
+     - It reached 3.6 V quickly (under about an hour) and **rests at about 3.55 V or more** → **Li-ion**, safe for this board.
+     - It charged for **several hours** and **rests around 3.35–3.45 V** → **LiFePO4**, don't use it with this board.
+  - Stay nearby while it charges. Don't try to "find the max voltage" with a 4.2 V charger until you know the chemistry.
 - [x] **Cell capacity** → R3 (charge current = 1000 V / R3, keep ≤ 0.5 × capacity):
   - 14500 cells are typically 600–900 mAh → **3k = 333 mA** ← chosen
   - 2k = 500 mA is too much for a 14500
-- [ ] **Board size**: measure the original board (or the spot it sits in) with calipers before ordering. The design is Ø19 mm; an AA tube itself is only ~15 mm inside.
-- [ ] **FS8205A pinout**: the footprint follows EVVO FS8205A (SOT-23-6): 1 S1, 2 D, 3 S2, 4 G2, 5 D, 6 G1. Other "8205A" makers use different pinouts. Check the datasheet of the exact part you buy.
-- [ ] **ATtiny85 package**: must be **ATtiny85-20SU** (or ATtiny85V-10SU), the **208-mil / 5.3 mm wide SOIC ("8S2")**. The normal 150-mil SOIC-8 does not fit.
+- [x] **Board size**: Ø19 mm confirmed (2026-11-03). The board sits where the original did; the cell itself is narrower.
+- [x] **FS8205A pinout**: checked 2026-11-03 against the datasheet of the part being ordered (EVVO FS8205A, SOT23-6L, marking "8205A", `FS8205A-new.pdf`): 1 S1, 2 D, 3 S2, 4 G2, 5 D, 6 G1. It matches the board. If you ever buy an "8205A" from another maker, check again, because pinouts differ.
+- [x] **ATtiny85 package**: ordering **ATtiny85-20SU**, the **208-mil / 5.3 mm wide SOIC ("8S2")**. The normal 150-mil SOIC-8 does not fit.
 
 ## LED measurements (2026-10-31)
 
@@ -37,7 +39,7 @@ Last updated 2026-11-03. Schematic: `Attiny_light.kicad_sch` (rev 2, ERC clean).
 - Before ordering:
   - [ ] Print the board 1:1 (KiCad *File → Print*, 100 %) and lay the real USB-C connector on it. Its footprint was drawn from the datasheet, and KiCad has no 3D model for it.
   - [ ] Check that the bottom pads clear the USB-C shell tabs that poke through (the two oval slots at the top edge).
-  - [ ] JP1 is open by default: bridge it only if the protection chips are left off.
+  - [ ] JP1 stays open: the protection chips are always fitted.
 
 ## PCB order settings
 
@@ -76,25 +78,25 @@ For bare boards, the zip is the only file the producer needs; set thickness, fin
 | J1 | 1 | USB-C power-only, vertical | 6-pin | Same Sky **UJC-VP-3-SMT-TR** (footprint made from its datasheet) |
 | U1 | 1 | TP4054 | SOT-23-5 | pins: 1 CHRG, 2 GND, 3 BAT, 4 VCC, 5 PROG |
 | U2 | 1 | ATtiny85-20SU | SOIC-8 **208 mil** | see above |
-| U3 | 1 | DW01A | SOT-23-6 | only for an unprotected cell |
+| U3 | 1 | DW01A | SOT-23-6 | battery protection (always fitted) |
 | Q1, Q2 | 2 | AO3400A | SOT-23 | LED switches |
-| Q3 | 1 | FS8205A | SOT-23-6 | only for an unprotected cell; check pinout |
+| Q3 | 1 | FS8205A | SOT-23-6 | battery protection (always fitted); check pinout |
 | R1, R2 | 2 | 5.1 kΩ | 0402 | USB-C CC pull-downs (without them C-to-C chargers give no power) |
 | R3 | 1 | 3 kΩ (or 2 kΩ) | 0402 | charge current |
 | R4 | 1 | 47 Ω | 0402 | MCU supply filter |
 | R5, R7 | 2 | 100 Ω | 0402 | gate resistors |
 | R6, R8 | 2 | 100 kΩ | 0402 | gate pull-downs |
 | R9 | 1 | 1 kΩ | 0402 | button series |
-| R10 | 1 | 100 Ω | 0402 | protection only |
-| R11 | 1 | 1 kΩ | 0402 | protection only |
+| R10 | 1 | 100 Ω | 0402 | battery protection |
+| R11 | 1 | 1 kΩ | 0402 | battery protection |
 | R12 | 1 | 10 kΩ | 0402 | reset pull-up (optional) |
 | R13 | 1 | 33 Ω | 0603 | LED current |
 | C1 | 1 | 4.7 µF 10 V X5R | 0603 | USB input |
 | C2, C4 | 2 | 10 µF 10 V X5R | 0603 | charger output, MCU bulk |
 | C3 | 1 | 100 nF | 0402 | MCU decoupling |
 | C5 | 1 | 10 nF | 0402 | button filter (optional) |
-| C6 | 1 | 100 nF | 0402 | protection only |
-| JP1 | – | solder jumper | – | bridge only if protection is NOT fitted |
+| C6 | 1 | 100 nF | 0402 | battery protection |
+| JP1 | – | solder jumper | – | leave **open**; bridging it bypasses the protection |
 | TP1–TP8 | – | pads | – | wires: B+, B−, PB4, SW, SW_GND, L+, L1, L2 |
 | J2 | – | pads | – | ISP pogo pads, no part |
 
