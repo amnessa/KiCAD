@@ -5,7 +5,8 @@ Last updated 2026-11-03. Schematic: `Attiny_light.kicad_sch` (rev 2, ERC clean).
 ## Before ordering — open questions
 
 - [x] **Battery protection**: decided 2026-11-03 to **always fit** U3, Q3, R10, R11 and C6, and leave JP1 **open**, without relying on whether the cell has its own protection. Two protections in series are harmless: about +50 mΩ and +3 µA. JP1 is only a fallback bypass.
-- [ ] **Cell chemistry** (unknown, from the cheapest rechargeable light): the cell is AA-size (**14500**), 3.3 V when found empty (2026-10-31). Cheap USB-charged lights almost always use **3.7 V Li-ion**, but check before charging it to 4.2 V:
+- [x] **Cell chemistry: Li-ion (3.7 V nominal, 4.2 V full)**, from the 3.60 V bench test on 2026-11-04: it reached 3.6 V quickly and stayed around 3.6 V after resting. Compatible with the TP4054 and R3 = 3k. The test is kept below for reference.
+  The cell is AA-size (**14500**), 3.3 V when found empty (2026-10-31). How it was checked:
   1. **Label first:** "3.7 V", "Li-ion", "ICR"/"INR" means OK. "3.2 V", "IFR", "LiFePO4" means **don't use this charger** (TP4054 charges to 4.2 V; LiFePO4 maximum is 3.6 V).
   2. **No readable label:** test the cell on its own with a bench supply set to **3.60 V, 100 mA limit**. That's safe for both chemistries. Charge until the current drops below about 15 mA, disconnect, wait 1 hour, then measure:
      - It reached 3.6 V quickly (under about an hour) and **rests at about 3.55 V or more** → **Li-ion**, safe for this board.
